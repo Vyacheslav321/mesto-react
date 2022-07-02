@@ -4,7 +4,7 @@
 function App() {
   return (
     <div className="App">
-      <h1>Calorie-Zen</h1>
+      <h1>Zen</h1>
     </div>
   );
 }
