@@ -1,6 +1,7 @@
 import Header from './Header';
 import Main from './Main'
 import Footer from './Footer';
+import popupWithForm from './popupWithForn';
 // import './index.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Header />
       <Main />
       <Footer />
+      <popupWithForm />
     {/* <!-- POPUP name-work--> */}
       <section className="popup popup_type_edit-bio">
         <div className="popup__container popup__container_type_input">
