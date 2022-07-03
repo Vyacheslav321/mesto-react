@@ -1,33 +1,14 @@
-// import logo from './logo.svg';
-// import './App.css';
+import Header from './Header';
+import Main from './Main'
+import Footer from './Footer';
+// import './index.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="header">
-        <div className="header__logo"></div>
-      </header>
-      <main>
-{/* <!-- PROFILE --> */}
-        <section className="profile">
-          <div className="profile__avatar-block">
-            <img className="profile__avatar" src="#" alt="аватар" />
-            <button className="profile__button-avatar" type="button" aria-label="Аватар"></button>
-          </div>
-          <div className="profile__info">
-              <h1 className="profile__name"></h1>
-              <button className="profile__button-edit" type="button" aria-label="Редактировать"></button>
-              <p className="profile__work"></p>
-          </div>
-          <button className="profile__button-add" type="button" aria-label="Добавить"></button>
-        </section>
-    {/* <!-- ELEMENTS --> */}
-        <section className="elements"></section>
-      </main>
-    {/* <!-- FOOTER --> */}
-      <footer className="footer">
-        <p className="footer__copyright">&copy; 2022 Mesto Russia</p>
-      </footer>
+    <div className="page">
+      <Header />
+      <Main />
+      <Footer />
     {/* <!-- POPUP name-work--> */}
       <section className="popup popup_type_edit-bio">
         <div className="popup__container popup__container_type_input">
