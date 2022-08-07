@@ -4,12 +4,6 @@ function Main(props) {
 	const userName=props.currentUser.name
 	const userDescription=props.currentUser.about
 	const userAvatar=props.currentUser.avatar
-	console.log("cvjnhbfvesfgsdgsfdgsdfgfsdgsdfgsdfgsdfg")
-	console.log(userAvatar)
-
-	// function handleClick() {
-	// 	props.onCardClick(props.card);
-	// }  
 
 	return (
 		<main>
@@ -32,8 +26,6 @@ function Main(props) {
 							card={card}
 							key={card._id}
 							onCardClick={props.onCardClick}
-							// onCardLike={props.onCardLike}
-							// onCardDelete={props.onCardDelete}
 					/>
         ))}
 			</section>

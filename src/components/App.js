@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header";
-import Main from "./Main.js";
+import Main from "./Main";
 import Footer from "./Footer";
 import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
-import api from "../utils/Api.js";
+import api from "../utils/api.js";
 import Card from "./Card";
 
 function App() {
@@ -15,18 +15,22 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
+
+  const [selectedCard, setSelectedCard] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     about: "",
-    avatar: "",
+    avatar: ""
   });
   const [cards, setCards] = React.useState({});
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
-      .then(([userData, cardData]) => {
+    .then(([userData, cardData]) => {
         cardData.reverse();
+        console.log("это userData");
+        console.log(userData);
+        console.log("это cardData");
         console.log(cardData);
         setCurrentUser(userData);
         setCards(cardData);
@@ -34,7 +38,7 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка загрузки данных ${err}`);
       });
-  }, []);
+    }, []);    
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -68,7 +72,7 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick}
         currentUser={currentUser}
-        cards={cards}
+        cards={[cards]}
       />
       <Card card={selectedCard} />
       <Footer />

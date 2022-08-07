@@ -1,6 +1,7 @@
 class Api {
   constructor({ defaultUrl, headers }) {
-    (this._defaultUrl = defaultUrl); (this._headers = headers);
+    this._defaultUrl = defaultUrl;
+    this._headers = headers;
   }
 
   _checkResOk(res) {
@@ -15,16 +16,14 @@ class Api {
     return fetch(`${this._defaultUrl}cards`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
 
   getUserInfo() {
     return fetch(`${this._defaultUrl}users/me`, {
       method: "GET",
       headers: this._headers,
-    })
-      .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
 
   // ЛАЙКИ
@@ -32,16 +31,14 @@ class Api {
     return fetch(`${this._defaultUrl}cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
-    })
-    .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
 
   setDislike(id) {
     return fetch(`${this._defaultUrl}cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-    .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
 
   //  Добавление/Удаление карточки пользователя
@@ -52,17 +49,15 @@ class Api {
       body: JSON.stringify({
         name: cardItem.picName,
         link: cardItem.picURL,
-      })
-    })
-      .then(this._checkResOk)
+      }),
+    }).then(this._checkResOk);
   }
 
   deleteUserCard(idCard) {
     return fetch(`${this._defaultUrl}cards/${idCard}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
   // Редактирование инфо о пользователе
   editUserInfo(userData) {
@@ -73,8 +68,7 @@ class Api {
         name: userData.name,
         about: userData.about,
       }),
-    })
-      .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
   // Редактирование аватара пользователя
   editAvatar(userData) {
@@ -84,14 +78,18 @@ class Api {
       body: JSON.stringify({
         avatar: userData.avatar,
       }),
-    })
-      .then(this._checkResOk)
+    }).then(this._checkResOk);
   }
 }
 
+
+
 const api = new Api({
-  defaultUrl: 'https://mesto.nomoreparties.co/v1/cohort-42/',
-  headers: {authorization: 'a60c123e-be9f-453f-be98-1b1679621350', 'Content-Type': 'application/json'}
+  defaultUrl: "https://mesto.nomoreparties.co/v1/cohort-42/",
+  headers: {
+    authorization: "a60c123e-be9f-453f-be98-1b1679621350",
+    "Content-Type": "application/json"
+  }
 });
 
 export default api;
