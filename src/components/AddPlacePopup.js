@@ -8,7 +8,7 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
     >
-      <children>
+      {/* <children> */}
         <div className="popup__block">
           <input
             id="picName"
@@ -33,7 +33,7 @@ function AddPlacePopup(props) {
           />
           <span id="picURL-error" className="error"></span>
         </div>
-      </children>
+      {/* </children> */}
     </PopupWithForm>
   );
 }

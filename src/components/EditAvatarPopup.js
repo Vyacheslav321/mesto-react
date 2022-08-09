@@ -8,7 +8,7 @@ function EditAvatarPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
     >
-      <children>
+      {/* <children> */}
         <div className="popup__block">
           <input
             id="avatar"
@@ -20,7 +20,7 @@ function EditAvatarPopup(props) {
           />
           <span id="avatar-error" className="error"></span>
         </div>
-      </children>
+      {/* </children> */}
     </PopupWithForm>
   );
 }

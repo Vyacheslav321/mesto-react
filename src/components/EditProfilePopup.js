@@ -8,7 +8,7 @@ function EditProfilePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
     >
-        <children>
+        {/* <children> */}
           <div className="popup__block">
             <input
               id="popupName"
@@ -34,7 +34,7 @@ function EditProfilePopup(props) {
             />
             <span id="popupWork-error" className="error"></span>
           </div>
-        </children>
+        {/* </children> */}
     </PopupWithForm>
   );
 }

@@ -1,6 +1,6 @@
 function Card(props) {
   function handleClick() {
-    props.onCardClick(props.card);
+    props.onCardClick(props.card)
   }
 
   return (
@@ -8,6 +8,7 @@ function Card(props) {
       <div className="element">
         <img
           className="element__pic"
+          id = {props.card.id}
           src={props.card.link}
           alt={props.card.name}
           onClick={handleClick}
@@ -17,7 +18,7 @@ function Card(props) {
           <h2 className="element__text">{props.card.name}</h2>
           <div className="element__like-wrapper">
             <button className="element__like "></button>
-            <p className="element__like-counter">{props.card.like}</p>
+            <p className="element__like-counter"></p>
           </div>
         </div>
       </div>

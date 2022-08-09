@@ -5,40 +5,34 @@ import Footer from "./Footer";
 import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
-import ImagePopup from "./ImagePopup";
+// import ImagePopup from "./ImagePopup";
 import api from "../utils/api.js";
 import Card from "./Card";
 
 function App() {
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-
   const [selectedCard, setSelectedCard] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     about: "",
     avatar: ""
   });
-  const [cards, setCards] = React.useState({});
+  const [cards1, setCards] = React.useState({});
+  
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
     .then(([userData, cardData]) => {
-        cardData.reverse();
-        console.log("это userData");
-        console.log(userData);
-        console.log("это cardData");
-        console.log(cardData);
+        // cardData.reverse();
         setCurrentUser(userData);
         setCards(cardData);
       })
       .catch((err) => {
         console.log(`Ошибка загрузки данных ${err}`);
       });
-    }, []);    
+    }, []);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -60,7 +54,7 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard(null);
+    setSelectedCard([]);
   }
 
   return (
@@ -72,7 +66,7 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick}
         currentUser={currentUser}
-        cards={[cards]}
+        cards={cards1}
       />
       <Card card={selectedCard} />
       <Footer />
@@ -88,10 +82,10 @@ function App() {
         isOpen={isAddPlacePopupOpen} 
         onClose={closeAllPopups} 
       />
-      <ImagePopup
+      {/* <ImagePopup
         card={selectedCard}
         onClose={closeAllPopups}
-      />
+      /> */}
     </div>
   );
 }

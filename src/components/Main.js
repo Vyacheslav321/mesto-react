@@ -1,35 +1,55 @@
 import Card from "./Card";
 
 function Main(props) {
-	const userName=props.currentUser.name
-	const userDescription=props.currentUser.about
-	const userAvatar=props.currentUser.avatar
+  const userName = props.currentUser.name;
+  const userDescription = props.currentUser.about;
+  const userAvatar = props.currentUser.avatar;
+  // const userId = props.currentUser._id;
 
-	return (
-		<main>
-			<section className="profile">
-				<div className="profile__avatar-block">
-					<img className="profile__avatar" style={{ backgroundImage: `url(${userAvatar})` }} alt="аватар" />
-					<button className="profile__button-avatar" type="button" aria-label="Аватар" onClick={props.onEditAvatar}></button>
-				</div>
-				<div className="profile__info">
-					<h1 className="profile__name">{userName}</h1>
-					<button className="profile__button-edit" type="button" aria-label="Редактировать" onClick={props.onEditProfile}></button>
-					<p className="profile__work">{userDescription}</p>
-				</div>
-				<button className="profile__button-add" type="button" aria-label="Добавить" onClick={props.onAddPlace}></button>
-			</section>
+  return (
+    <main>
+      <section className="profile">
+        <div className="profile__avatar-block">
+          <img
+            className="profile__avatar"
+						src={userAvatar}
+            alt="аватар"
+          />
+          <button
+            className="profile__button-avatar"
+            type="button"
+            aria-label="Аватар"
+            onClick={props.onEditAvatar}
+          ></button>
+        </div>
+        <div className="profile__info">
+          <h1 className="profile__name">{userName}</h1>
+          <button
+            className="profile__button-edit"
+            type="button"
+            aria-label="Редактировать"
+            onClick={props.onEditProfile}
+          ></button>
+          <p className="profile__work">{userDescription}</p>
+        </div>
+        <button
+          className="profile__button-add"
+          type="button"
+          aria-label="Добавить"
+          onClick={props.onAddPlace}
+        ></button>
+      </section>
 
-			<section className="elements">
-				{props.cards.map((card) => (
+      <section className="elements">
+				{props.cards.map((card, id) => (
 					<Card
 							card={card}
-							key={card._id}
+							key={id}
 							onCardClick={props.onCardClick}
 					/>
         ))}
 			</section>
-		</main>
-	)
-};
+    </main>
+  );
+}
 export default Main;

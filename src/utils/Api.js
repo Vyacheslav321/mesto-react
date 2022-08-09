@@ -13,14 +13,14 @@ class Api {
 
   // Получение информаци о карточках и пользователе
   getCards() {
-    return fetch(`${this._defaultUrl}cards`, {
+    return fetch(`${this._defaultUrl}/cards`, {
       method: "GET",
       headers: this._headers,
     }).then(this._checkResOk);
   }
 
   getUserInfo() {
-    return fetch(`${this._defaultUrl}users/me`, {
+    return fetch(`${this._defaultUrl}/users/me`, {
       method: "GET",
       headers: this._headers,
     }).then(this._checkResOk);
@@ -28,14 +28,14 @@ class Api {
 
   // ЛАЙКИ
   setLike(id) {
-    return fetch(`${this._defaultUrl}cards/${id}/likes`, {
+    return fetch(`${this._defaultUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then(this._checkResOk);
   }
 
   setDislike(id) {
-    return fetch(`${this._defaultUrl}cards/${id}/likes`, {
+    return fetch(`${this._defaultUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResOk);
@@ -43,7 +43,7 @@ class Api {
 
   //  Добавление/Удаление карточки пользователя
   createUserCard(cardItem) {
-    return fetch(`${this._defaultUrl}cards`, {
+    return fetch(`${this._defaultUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -54,14 +54,14 @@ class Api {
   }
 
   deleteUserCard(idCard) {
-    return fetch(`${this._defaultUrl}cards/${idCard}`, {
+    return fetch(`${this._defaultUrl}/cards/${idCard}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResOk);
   }
   // Редактирование инфо о пользователе
   editUserInfo(userData) {
-    return fetch(`${this._defaultUrl}users/me`, {
+    return fetch(`${this._defaultUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -72,7 +72,7 @@ class Api {
   }
   // Редактирование аватара пользователя
   editAvatar(userData) {
-    return fetch(`${this._defaultUrl}users/me/avatar`, {
+    return fetch(`${this._defaultUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -85,7 +85,7 @@ class Api {
 
 
 const api = new Api({
-  defaultUrl: "https://mesto.nomoreparties.co/v1/cohort-42/",
+  defaultUrl: "https://mesto.nomoreparties.co/v1/cohort-42",
   headers: {
     authorization: "a60c123e-be9f-453f-be98-1b1679621350",
     "Content-Type": "application/json"

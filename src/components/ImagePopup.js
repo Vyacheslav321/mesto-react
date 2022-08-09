@@ -13,8 +13,10 @@ function ImagePopup(props) {
         ></button>
         <img
           className="popup__picture"
-          src={props.card && props.card.link}
-          alt={props.card && props.card.name}
+          src={props.card.link}
+          alt={props.card.name}
+          // src={props.card && props.card.link}
+          // alt={props.card && props.card.name}
           // src="./images/elements__like_unactive.svg"
           // alt="Картинка"
         />
