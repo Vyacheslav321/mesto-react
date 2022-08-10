@@ -6,7 +6,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
-import api from "../utils/api.js";
+import api from "../utils/Api";
 // import Card from "./Card";
 
 function App() {
