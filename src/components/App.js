@@ -5,34 +5,33 @@ import Footer from "./Footer";
 import AddPlacePopup from "./AddPlacePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
-// import ImagePopup from "./ImagePopup";
+import ImagePopup from "./ImagePopup";
 import api from "../utils/api.js";
-import Card from "./Card";
+// import Card from "./Card";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({
     name: "",
     about: "",
-    avatar: ""
+    avatar: "",
   });
   const [cards, setCards] = React.useState([]);
-  
+  const [selectedCard, setSelectedCard] = React.useState([]);
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
-    .then(([userData, cardData]) => {
+      .then(([userData, cardData]) => {
         cardData.reverse();
-         setCurrentUser(userData);
+        setCurrentUser(userData);
         setCards(cardData);
       })
       .catch((err) => {
         console.log(`Ошибка загрузки данных ${err}`);
       });
-    }, []);
+  }, []);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -68,7 +67,6 @@ function App() {
         currentUser={currentUser}
         cards={cards}
       />
-      <Card card={selectedCard} />
       <Footer />
       <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
@@ -78,14 +76,8 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       />
-      <AddPlacePopup 
-        isOpen={isAddPlacePopupOpen} 
-        onClose={closeAllPopups} 
-      />
-      {/* <ImagePopup
-        card={selectedCard}
-        onClose={closeAllPopups}
-      /> */}
+      <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }

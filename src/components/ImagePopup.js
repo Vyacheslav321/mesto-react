@@ -1,8 +1,8 @@
 function ImagePopup(props) {
   return (
     <section
-      className={`popup popup_type_bigpicture ${props.card && "popup_opened"}`}
-      // onClick={props.onClose}
+      className={`popup popup_type_bigpicture ${props.card.link && "popup_opened"}`}
+      onClick={props.onClose}
     >
       <div className="popup__container popup__container_type_picture">
         <button
@@ -15,12 +15,8 @@ function ImagePopup(props) {
           className="popup__picture"
           src={props.card.link}
           alt={props.card.name}
-          // src={props.card && props.card.link}
-          // alt={props.card && props.card.name}
-          // src="./images/elements__like_unactive.svg"
-          // alt="Картинка"
         />
-        <p className="popup__text">{props.card && props.card.name}</p>
+        <p className="popup__text">{props.card.name}</p>
       </div>
     </section>
   );
