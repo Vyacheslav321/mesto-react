@@ -19,14 +19,14 @@ function App() {
     about: "",
     avatar: ""
   });
-  const [cards1, setCards] = React.useState({});
+  const [cards, setCards] = React.useState([]);
   
 
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
     .then(([userData, cardData]) => {
-        // cardData.reverse();
-        setCurrentUser(userData);
+        cardData.reverse();
+         setCurrentUser(userData);
         setCards(cardData);
       })
       .catch((err) => {
@@ -66,7 +66,7 @@ function App() {
         onAddPlace={handleAddPlaceClick}
         onCardClick={handleCardClick}
         currentUser={currentUser}
-        cards={cards1}
+        cards={cards}
       />
       <Card card={selectedCard} />
       <Footer />
