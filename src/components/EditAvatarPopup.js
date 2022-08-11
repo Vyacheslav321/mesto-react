@@ -1,4 +1,4 @@
-import PopupWithForm from "./PopupWithForn";
+import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup(props) {
   return (
