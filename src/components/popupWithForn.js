@@ -15,7 +15,7 @@ function PopupWithForm(props) {
           aria-label="Закрыть"
           onClick={props.onClose}
         ></button>
-        <form className="popup__form" name={`${props.name}`} novalidate>
+        <form className="popup__form" name={`${props.name}`} noValidate>
           <h3 className="popup__header popup__header_type_input">
             {props.title}
           </h3>
@@ -26,7 +26,7 @@ function PopupWithForm(props) {
             aria-label="Сохранить"
             onClick={props.onClose}
           >
-            Сохранить
+            {props.buttonText}
           </button>
         </form>
       </div>

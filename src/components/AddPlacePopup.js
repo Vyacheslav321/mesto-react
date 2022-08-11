@@ -1,4 +1,4 @@
-import PopupWithForm from "./popupWithForn";
+import PopupWithForm from "./PopupWithForn";
 
 function AddPlacePopup(props) {
   return (
@@ -7,6 +7,7 @@ function AddPlacePopup(props) {
       title="Новое место"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      buttonText="Создать"
     >
       {/* <children> */}
         <div className="popup__block">
@@ -16,8 +17,8 @@ function AddPlacePopup(props) {
             type="text"
             name="picName"
             placeholder="Название"
-            minlength="2"
-            maxlength="30"
+            minLength="2"
+            maxLength="30"
             required
           />
           <span id="picName-error" className="error"></span>

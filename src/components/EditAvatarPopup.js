@@ -1,4 +1,4 @@
-import PopupWithForm from "./popupWithForn";
+import PopupWithForm from "./PopupWithForn";
 
 function EditAvatarPopup(props) {
   return (
@@ -7,6 +7,7 @@ function EditAvatarPopup(props) {
       title="Обновить аватар"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      buttonText="Сохранить"
     >
       {/* <children> */}
         <div className="popup__block">

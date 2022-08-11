@@ -8,7 +8,7 @@ function Card(props) {
       <div className="element">
         <img
           className="element__pic"
-          id = {props.card.id}
+          // key = {props.card._id}
           src={props.card.link}
           alt={props.card.name}
           onClick={handleClick}

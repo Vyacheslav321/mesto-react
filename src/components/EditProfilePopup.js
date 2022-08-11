@@ -1,4 +1,4 @@
-import PopupWithForm from "./popupWithForn";
+import PopupWithForm from "./PopupWithForn";
 
 function EditProfilePopup(props) {
   return (
@@ -7,6 +7,7 @@ function EditProfilePopup(props) {
       title="Редактировать профиль"
       isOpen={props.isOpen}
       onClose={props.onClose}
+      buttonText="Сохранить"
     >
         {/* <children> */}
           <div className="popup__block">
@@ -15,10 +16,10 @@ function EditProfilePopup(props) {
               className="popup__input popup__input_type_name"
               type="text"
               name="name"
-              minlength="2"
-              maxlength="40"
+              minLength="2"
+              maxLength="40"
               required
-              autofocus
+              autoFocus
             />
             <span id="popupName-error" className="error"></span>
           </div>
@@ -28,8 +29,8 @@ function EditProfilePopup(props) {
               className="popup__input popup__input_type_work"
               type="text"
               name="about"
-              minlength="2"
-              maxlength="200"
+              minLength="2"
+              maxLength="200"
               required
             />
             <span id="popupWork-error" className="error"></span>
