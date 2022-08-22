@@ -69,7 +69,8 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteUserCard(card._id)
+    api
+      .deleteUserCard(card._id)
       .then(() => {
         //копиюя массива за исключением удалённой карточки
         const newCards = cards.filter((c) => c._id !== card._id);
@@ -81,24 +82,41 @@ function App() {
       })
       .finally(() => {
         closeAllPopups();
-      })
+      });
   }
 
   function handleUpdateUser(user) {
-    api.setUserInfo(user.name, user.about)
-    .then((userData) => { 
-      setCurrentUser({
-        ...currentUser,
-        name: userData.name,
-        about: userData.about
+    api
+      .setUserInfo(user.name, user.about)
+      .then((userData) => {
+        setCurrentUser({
+          ...currentUser,
+          name: userData.name,
+          about: userData.about,
+        });
       })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      closeAllPopups();
-    })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+      });
+  }
+
+  function handleUpdateAvatar(user) {
+    api.setAvatar(user.avatar)
+      .then((userData) => {
+        setCurrentUser({
+          ...currentUser,
+          avatar: userData.avatar,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+      });
   }
 
   function closeAllPopups() {
@@ -125,6 +143,7 @@ function App() {
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}

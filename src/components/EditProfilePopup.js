@@ -29,7 +29,7 @@ function EditProfilePopup(props) {
     e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
     props.onUpdateUser({
-      name,
+      name: name,
       about: description,
     });
   }

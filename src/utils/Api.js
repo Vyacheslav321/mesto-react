@@ -69,7 +69,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: userData.avatar,
+        avatar: userData,
       }),
     }).then(this._checkResOk);
   }
