@@ -23,14 +23,14 @@ function Main(props) {
           ></button>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{currentUser.name}</h1>
+          <h1 className="profile__name">{ currentUser.name }</h1>
           <button
             className="profile__button-edit"
             type="button"
             aria-label="Редактировать"
             onClick={props.onEditProfile}
           ></button>
-          <p className="profile__work">{currentUser.description}</p>
+          <p className="profile__work">{ currentUser.about }</p>
         </div>
         <button
           className="profile__button-add"
@@ -42,7 +42,7 @@ function Main(props) {
 
       <section className="elements">
         {props.cards.map((card) => (
-          <Card card={card} key={card._id} onCardClick={props.onCardClick} />
+          <Card card={card} key={card._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete}/>
         ))}
       </section>
     </main>

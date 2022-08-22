@@ -27,16 +27,9 @@ class Api {
   }
 
   // ЛАЙКИ
-  setLike(id) {
+  changeLikeCardStatus(id, isLiked) {
     return fetch(`${this._defaultUrl}/cards/${id}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then(this._checkResOk);
-  }
-
-  setDislike(id) {
-    return fetch(`${this._defaultUrl}/cards/${id}/likes`, {
-      method: "DELETE",
+      method: `${isLiked ? "PUT" : "DELETE"}`,
       headers: this._headers,
     }).then(this._checkResOk);
   }
@@ -60,7 +53,7 @@ class Api {
     }).then(this._checkResOk);
   }
   // Редактирование инфо о пользователе
-  editUserInfo(userData) {
+  setUserInfo(userData) {
     return fetch(`${this._defaultUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
@@ -71,7 +64,7 @@ class Api {
     }).then(this._checkResOk);
   }
   // Редактирование аватара пользователя
-  editAvatar(userData) {
+  setAvatar(userData) {
     return fetch(`${this._defaultUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
