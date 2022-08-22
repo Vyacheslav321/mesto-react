@@ -1,4 +1,5 @@
 import React from "react";
+
 function PopupWithForm(props) {
   return (
     <section
@@ -15,7 +16,12 @@ function PopupWithForm(props) {
           aria-label="Закрыть"
           onClick={props.onClose}
         ></button>
-        <form className="popup__form" name={`${props.name}`} noValidate>
+        <form
+          className="popup__form"
+          name={`${props.name}`}
+          onSubmit={props.onSubmit}
+          noValidate
+        >
           <h3 className="popup__header popup__header_type_input">
             {props.title}
           </h3>

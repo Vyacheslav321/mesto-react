@@ -7,7 +7,7 @@ function EditProfilePopup(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const [name, setName] = React.useState();
-  const [description , setDescription ] = React.useState();
+  const [description, setDescription] = React.useState();
 
   // После загрузки текущего пользователя из API
   // его данные будут использованы в управляемых компонентах.

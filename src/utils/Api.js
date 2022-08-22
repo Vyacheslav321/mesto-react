@@ -53,13 +53,13 @@ class Api {
     }).then(this._checkResOk);
   }
   // Редактирование инфо о пользователе
-  setUserInfo(userData) {
+  setUserInfo(name, about) {
     return fetch(`${this._defaultUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.name,
-        about: userData.about,
+        name: name,
+        about: about,
       }),
     }).then(this._checkResOk);
   }

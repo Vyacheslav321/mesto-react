@@ -84,11 +84,13 @@ function App() {
       })
   }
 
-  function handleUpdateUser() {
-    api.setUserInfo(currentUser.name, currentUser.about)
-    .then((userData) => { setCurrentUser({
+  function handleUpdateUser(user) {
+    api.setUserInfo(user.name, user.about)
+    .then((userData) => { 
+      setCurrentUser({
+        ...currentUser,
         name: userData.name,
-        about: userData.about,
+        about: userData.about
       })
     })
     .catch((err) => {
