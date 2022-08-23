@@ -1,13 +1,13 @@
 import React from "react";
 
 function PopupWithForm(props) {
+
   return (
     <section
       className={
         `popup popup_type_${props.name} ` +
         (props.isOpen === true ? "popup_opened" : "")
       }
-      // onClick={props.onClose}
     >
       <div className="popup__container popup__container_type_input">
         <button
@@ -30,7 +30,6 @@ function PopupWithForm(props) {
             className="popup__save-button"
             type="submit"
             aria-label="Сохранить"
-            onClick={props.onClose}
           >
             {props.buttonText}
           </button>

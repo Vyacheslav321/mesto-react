@@ -9,6 +9,7 @@ import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
+
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
@@ -133,6 +134,19 @@ function App() {
         closeAllPopups();
       });
   }
+
+  React.useEffect(() => { 
+    function handleEscClose(evt) {
+       if (evt.keyCode === 27) {
+        closeAllPopups();
+      }
+    };
+    window.addEventListener('keydown', handleEscClose);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscClose);
+    };
+  }, []);
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);

@@ -22,7 +22,6 @@ function EditAvatarPopup(props) {
       onSubmit={handleSubmit}
       buttonText="Сохранить"
     >
-      {/* <children> */}
         <div className="popup__block">
           <input
             ref = {urlAvatar}
@@ -35,7 +34,6 @@ function EditAvatarPopup(props) {
           />
           <span id="avatar-error" className="error"></span>
         </div>
-      {/* </children> */}
     </PopupWithForm>
   );
 }
