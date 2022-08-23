@@ -104,12 +104,27 @@ function App() {
   }
 
   function handleUpdateAvatar(user) {
-    api.setAvatar(user.avatar)
+    api
+      .setAvatar(user.avatar)
       .then((userData) => {
         setCurrentUser({
           ...currentUser,
           avatar: userData.avatar,
         });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        closeAllPopups();
+      });
+  }
+
+  function handleAddPlaceSubmit(card) {
+    api
+      .createUserCard(card)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
       })
       .catch((err) => {
         console.log(err);
@@ -150,7 +165,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit}
+        />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
     </div>

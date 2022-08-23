@@ -40,8 +40,8 @@ class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardItem.picName,
-        link: cardItem.picURL,
+        name: cardItem.name,
+        link: cardItem.link,
       }),
     }).then(this._checkResOk);
   }
