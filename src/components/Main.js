@@ -1,10 +1,10 @@
+import React from "react";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const userName = props.currentUser.name;
-  const userDescription = props.currentUser.about;
-  const userAvatar = props.currentUser.avatar;
-  // const userId = props.currentUser._id;
+  //подписка на контент с помощью хука useContext
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main>
@@ -12,7 +12,7 @@ function Main(props) {
         <div className="profile__avatar-block">
           <img
             className="profile__avatar"
-						src={userAvatar}
+            src={currentUser.avatar}
             alt="аватар"
           />
           <button
@@ -23,14 +23,14 @@ function Main(props) {
           ></button>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{userName}</h1>
+          <h1 className="profile__name">{ currentUser.name }</h1>
           <button
             className="profile__button-edit"
             type="button"
             aria-label="Редактировать"
             onClick={props.onEditProfile}
           ></button>
-          <p className="profile__work">{userDescription}</p>
+          <p className="profile__work">{ currentUser.about }</p>
         </div>
         <button
           className="profile__button-add"
@@ -41,14 +41,10 @@ function Main(props) {
       </section>
 
       <section className="elements">
-				{props.cards.map((card) => (
-					<Card
-							card={card}
-							key={card._id}
-							onCardClick={props.onCardClick}
-					/>
+        {props.cards.map((card) => (
+          <Card card={card} key={card._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete}/>
         ))}
-			</section>
+      </section>
     </main>
   );
 }

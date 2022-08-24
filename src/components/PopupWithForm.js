@@ -1,4 +1,5 @@
 import React from "react";
+
 function PopupWithForm(props) {
   return (
     <section
@@ -6,7 +7,6 @@ function PopupWithForm(props) {
         `popup popup_type_${props.name} ` +
         (props.isOpen === true ? "popup_opened" : "")
       }
-      onClick={props.onClose}
     >
       <div className="popup__container popup__container_type_input">
         <button
@@ -15,7 +15,12 @@ function PopupWithForm(props) {
           aria-label="Закрыть"
           onClick={props.onClose}
         ></button>
-        <form className="popup__form" name={`${props.name}`} noValidate>
+        <form
+          className="popup__form"
+          name={`${props.name}`}
+          onSubmit={props.onSubmit}
+          noValidate
+        >
           <h3 className="popup__header popup__header_type_input">
             {props.title}
           </h3>
@@ -24,7 +29,6 @@ function PopupWithForm(props) {
             className="popup__save-button"
             type="submit"
             aria-label="Сохранить"
-            onClick={props.onClose}
           >
             {props.buttonText}
           </button>
