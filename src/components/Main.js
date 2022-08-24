@@ -1,10 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-function Main(props) {
+function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards,
+}) {
   //подписка на контент с помощью хука useContext
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main>
@@ -19,30 +27,36 @@ function Main(props) {
             className="profile__button-avatar"
             type="button"
             aria-label="Аватар"
-            onClick={props.onEditAvatar}
+            onClick={onEditAvatar}
           ></button>
         </div>
         <div className="profile__info">
-          <h1 className="profile__name">{ currentUser.name }</h1>
+          <h1 className="profile__name">{currentUser.name}</h1>
           <button
             className="profile__button-edit"
             type="button"
             aria-label="Редактировать"
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
           ></button>
-          <p className="profile__work">{ currentUser.about }</p>
+          <p className="profile__work">{currentUser.about}</p>
         </div>
         <button
           className="profile__button-add"
           type="button"
           aria-label="Добавить"
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
         ></button>
       </section>
 
       <section className="elements">
-        {props.cards.map((card) => (
-          <Card card={card} key={card._id} onCardClick={props.onCardClick} onCardLike={props.onCardLike} onCardDelete={props.onCardDelete}/>
+        {cards.map((card) => (
+          <Card
+            card={card}
+            key={card._id}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
+          />
         ))}
       </section>
     </main>

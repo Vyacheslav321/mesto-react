@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -12,19 +12,19 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
+    useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({
+    useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
     name: ' ',
     about: ' ',
     avatar: ' ',
   });
-  const [cards, setCards] = React.useState([]);
-  const [selectedCard, setSelectedCard] = React.useState([]);
+  const [cards, setCards] = useState([]);
+  const [selectedCard, setSelectedCard] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(([userData, cardData]) => {
         // cardData.reverse();
@@ -135,7 +135,7 @@ function App() {
       });
   }
 
-  React.useEffect(() => { 
+  useEffect(() => { 
     function handleEscClose(evt) {
        if (evt.keyCode === 27) {
         closeAllPopups();

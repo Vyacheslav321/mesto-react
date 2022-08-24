@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useState} from 'react';
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup(props) {
-  const [picName, setPicName] = React.useState();
-  const [picUrl, setPicUrl] = React.useState();
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  const [picName, setPicName] = useState();
+  const [picUrl, setPicUrl] = useState();
 
   function handleChangePicName(e) {
     setPicName(e.target.value);
@@ -17,7 +17,7 @@ function AddPlacePopup(props) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
-    props.onAddPlace({
+    onAddPlace({
       name: picName,
       link: picUrl,
     });
@@ -25,10 +25,10 @@ function AddPlacePopup(props) {
 
   return (
     <PopupWithForm
-      name='edit-pic'
+      name="edit-pic"
       title="Новое место"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
       buttonText="Создать"
     >

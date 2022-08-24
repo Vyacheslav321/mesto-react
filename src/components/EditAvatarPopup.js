@@ -1,14 +1,14 @@
-import React from "react";
+import React, {useRef} from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup(props) {
-  const urlAvatar = React.useRef('');
+function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
+  const urlAvatar = useRef("");
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
     e.preventDefault();
     // Передаём значения управляемых компонентов во внешний обработчик
-    props.onUpdateAvatar({
+    onUpdateAvatar({
       avatar: urlAvatar.current.value,
     });
   }
@@ -16,10 +16,10 @@ function EditAvatarPopup(props) {
   return (
     <PopupWithForm
       title="Обновить аватар"
-      name='avatar'
+      name="avatar"
       buttonText="Сохранить"
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <div className="popup__block">
