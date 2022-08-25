@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
-  const [picName, setPicName] = useState();
-  const [picUrl, setPicUrl] = useState();
+  const [picName, setPicName] = useState("");
+  const [picUrl, setPicUrl] = useState("");
 
   function handleChangePicName(e) {
     setPicName(e.target.value);
@@ -23,6 +23,13 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     });
   }
 
+  useEffect(() => {
+    if (isOpen) {
+      setPicName("");
+      setPicUrl("");
+    }
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       name="edit-pic"
@@ -32,7 +39,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       onSubmit={handleSubmit}
       buttonText="Создать"
     >
-      {/* <children> */}
       <div className="popup__block">
         <input
           onChange={handleChangePicName}
@@ -44,6 +50,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           minLength="2"
           maxLength="30"
           required
+          value={picName}
         />
         <span id="picName-error" className="error"></span>
       </div>
@@ -56,10 +63,10 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           name="picURL"
           placeholder="Ссылка на картинку"
           required
+          value={picUrl}
         />
         <span id="picURL-error" className="error"></span>
       </div>
-      {/* </children> */}
     </PopupWithForm>
   );
 }
