@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -9,22 +9,20 @@ import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
-
 function App() {
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
-    React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [currentUser, setCurrentUser] = React.useState({
-    name: ' ',
-    about: ' ',
-    avatar: ' ',
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isImagePopupOpen, setisImagePopupOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    name: " ",
+    about: " ",
+    avatar: " ",
   });
-  const [cards, setCards] = React.useState([]);
-  const [selectedCard, setSelectedCard] = React.useState([]);
+  const [cards, setCards] = useState([]);
+  const [selectedCard, setSelectedCard] = useState({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(([userData, cardData]) => {
         // cardData.reverse();
@@ -50,6 +48,7 @@ function App() {
 
   function handleCardClick(card) {
     setSelectedCard(card);
+    setisImagePopupOpen(true);
   }
 
   function handleCardLike(card) {
@@ -59,10 +58,9 @@ function App() {
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
-        const newCards = cards.map((c) => (c._id === card._id ? newCard : c));
         // Обновляем стейт
-        setCards(newCards);
+        // Формируем новый массив на основе имеющегося, подставляя в него новую карточку
+        setCards(state => state.map(c => (c._id === card._id ? newCard : c)));
       })
       .catch((err) => {
         console.log(err);
@@ -73,16 +71,12 @@ function App() {
     api
       .deleteUserCard(card._id)
       .then(() => {
-        //копиюя массива за исключением удалённой карточки
-        const newCards = cards.filter((c) => c._id !== card._id);
         // Обновляем стейт
-        setCards(newCards);
+        // копиюя массива за исключением удалённой карточки
+        setCards(state => state.filter((c) => c._id !== card._id));
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        closeAllPopups();
       });
   }
 
@@ -95,13 +89,12 @@ function App() {
           name: userData.name,
           about: userData.about,
         });
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        closeAllPopups();
-      });
+
   }
 
   function handleUpdateAvatar(user) {
@@ -112,13 +105,11 @@ function App() {
           ...currentUser,
           avatar: userData.avatar,
         });
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        closeAllPopups();
-      });
   }
 
   function handleAddPlaceSubmit(card) {
@@ -126,33 +117,33 @@ function App() {
       .createUserCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {
-        closeAllPopups();
-      });
   }
 
-  React.useEffect(() => { 
+  useEffect(() => {
     function handleEscClose(evt) {
-       if (evt.keyCode === 27) {
+      if (evt.keyCode === 27) {
         closeAllPopups();
       }
-    };
-    window.addEventListener('keydown', handleEscClose);
-
+    }
+    if (isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isImagePopupOpen) {
+      window.addEventListener("keydown", handleEscClose);
+    }
     return () => {
-      window.removeEventListener('keydown', handleEscClose);
+      window.removeEventListener("keydown", handleEscClose);
     };
-  }, []);
+  }, [isEditAvatarPopupOpen, isEditProfilePopupOpen, isAddPlacePopupOpen, isImagePopupOpen]);
 
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
-    setSelectedCard([]);
+    setisImagePopupOpen(false);
+    setSelectedCard({});
   }
 
   return (
