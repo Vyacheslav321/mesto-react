@@ -1,4 +1,4 @@
-# Проектная работа №10 - 12: mesto-react
+# Проектная работа №10 - 11: mesto-react
 
 Данный репозиторий создан в рамках обучения на [Yandex.Practicum](https://practicum.yandex.ru "Я практикум")
 
